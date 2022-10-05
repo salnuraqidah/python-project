@@ -20,12 +20,17 @@ def parse(data):
         link = game['href']
     
         # parsing data
-        title = game.find('span',{'class' : 'title'}).text
-        price = game.find('div',{'class':'search_price'}).text.strip('E')
+        title = game.find('span',{'class' : 'title'}).text.strip().split('£')[0]
+        price = game.find('div',{'class':'search_price'}).text.strip().split('£')[0]
+        release = game.find('div',{'class':'search_released'}).text.strip().split('£')[0]
+
+        if release == '':
+            release='none'
 
         # sorting data 
         data_dict = {
             'title' : title,
+            'release' : release,
             'price' : price,
             'link' : link
         }
