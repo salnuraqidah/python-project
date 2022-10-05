@@ -45,6 +45,18 @@ def parse(data):
         result.append(data_dict)
     return result
 
+    # writing json
+
+    with open('json_result.json', 'w') as outfile:
+        json.dump(result, outfile)
+    return result
+
+# read json 
+def load_data():
+    with open('json_result.json') as json_file:
+        data = json.load_data(json_file)
+    
+
 # process cleaned data from parser 
 
 def output (datas: list):
