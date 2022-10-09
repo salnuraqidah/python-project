@@ -5,10 +5,14 @@ import pandas as pd
 import os
 
 
-url = 'https://store.steampowered.com/search/?term=gta'
+url = 'https://store.steampowered.com/search/?'
+
+params = {
+    'term': 'gta'
+}
 
 def get_data(url):
-    r = requests.get(url)
+    r = requests.get(url, params=params)
     return r.text
 
 #pocessing data
@@ -47,9 +51,7 @@ def parse(data):
 
     # writing json
 
-    with open('json_result.json', 'w') as outfile:
-        json.dump(result, outfile)
-    return result
+    
 
 # read json 
 def load_data():
@@ -66,7 +68,13 @@ def output (datas: list):
 def generate_data(result, filename):
     df = pd.DataFrame(result)
     df.to_excel(f'{filename}.xlsx',index=False)
+    df.to_csv(f'{filename}.csv',index=False)
+    
 
+def create_json(final_data):
+    with open('json_result/final_data.json', 'w+') as outfile:
+        json.dump(final_data, outfile)
+    print('json created')
 
 if __name__ == '__main__':
     data = get_data(url)
@@ -75,3 +83,4 @@ if __name__ == '__main__':
     namafile = input('Masukkan nama file:')
     generate_data(final_data,namafile)
     output(final_data)
+    create_json(final_data)
