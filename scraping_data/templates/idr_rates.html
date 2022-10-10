@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Inverse Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for data in json_data%}
+        <tr>
+            <th scope="row">{{data['code'] }}</th>
+            <td>{{data['name'] }}</td>
+            <td>{{data['date'] }}</td>
+            <td>{{data['inverseRate'] }}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{% endblock %}

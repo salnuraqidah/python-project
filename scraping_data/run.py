@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('index.html',home=1)
+    return render_template('base.html',home=1)
 
 @app.route("/logammulia")
 def logammulia():
@@ -26,7 +26,13 @@ def logammulia():
     contents = soup.find('div','list media_rows list-berita')
     datas = contents.find_all('article')
     
-    return render_template('index.html', datas=datas)
+    return render_template('detik_scraper.html', datas=datas)
 
+@app.route('/idr-rates')
+def idr_rates():
+    url = 'http://www.floatrates.com/daily/idr.json'
+    json_data = requests.get(url).json().values()
+    return render_template('idr_rates.html', json_data=json_data)
+    
 if __name__ == '__main__':
     app.run(debug=True)
