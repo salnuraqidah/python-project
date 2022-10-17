@@ -22,5 +22,10 @@ images = contents.find_all(attrs={'class':'ratiobox box_thumb'})
 datas = contents.find_all('article')
 
 for data in datas:
-    print(data.find('h2','title').text)
+    image = data.find(attrs={'class':'ratiobox box_thumb'}).find('img')['src']
+    title = data.find('h2','title').text
+    
+    with open('images/'+ title +'.jpg','wb') as f:
+        img = requests.get(image)
+        f.write(img.content)
 
