@@ -1,2 +1,2 @@
 # python-project
-https://py-bysal.herokuapp.com/idr-rates
+https://py-bysal.herokuapp.com
