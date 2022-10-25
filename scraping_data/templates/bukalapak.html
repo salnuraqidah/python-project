@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h5>Hasil pencarian “Macbook Air M1” dengan filter terlaris pada platform Bukalapak</h5>
+<br>
+<table id="tbl_bukalapak" class="table table-striped" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price (Rp)</th>
+            <th>Rating</th>
+            <th>Location</th>
+            <th>Store</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for data in datas%}
+        <tr>
+            <td> <a href="{{data['link'] }}" target="_blank"> {{data['title'] }}</a></td>
+            <td>{{data['price'] }}</td>
+            <td>{{data['rating'] }}</td>
+            <td>{{data['location'] }}</td>
+            <td> <a href="{{data['link_store'] }}" target="_blank">{{data['store'] }}</a> </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
